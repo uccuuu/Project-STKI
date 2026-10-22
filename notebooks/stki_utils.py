@@ -23,14 +23,14 @@ import pandas as pd
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "Data"
+DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
 
 # ---------------------------------------------------------------------------
 # Data
 # ---------------------------------------------------------------------------
 def load_corpus():
-    """Mengembalikan DataFrame korpus (id_doc, judul, isi)."""
+    """Mengembalikan DataFrame korpus (doc_id, judul, isi)."""
     return pd.read_csv(DATA_DIR / "korpus.csv")
 
 
@@ -52,7 +52,7 @@ def load_qrels():
 def corpus_texts(df=None):
     """Mengembalikan dict {doc_id: judul + isi}."""
     df = load_corpus() if df is None else df
-    return {r.id_doc: f"{r.judul}. {r.isi}" for r in df.itertuples(index=False)}
+    return {r.doc_id: f"{r.judul}. {r.isi}" for r in df.itertuples(index=False)}
 
 
 # ---------------------------------------------------------------------------
